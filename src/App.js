@@ -5,16 +5,20 @@ import TaskList from "./components/TaskList";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Simple Tasks App (with RTK)</h1>
+    <div className="bg-zinc-700 h-screen text-white">
+      <div className="flex items-center justify-center text-2xl py-4">
+        Simple Tasks App (with RTK)
+      </div>
       <hr />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<TaskList />} />
-          <Route path="/create-task" element={<TaskForm />} />
-          <Route path="/edit-task/:id" element={<TaskForm />} />
-        </Routes>
-      </BrowserRouter>
+      <div className="flex items-center justify-center h-screen">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<TaskList />} />
+            <Route path="/create-task" element={<TaskForm />} />
+            <Route path="/edit-task/:id" element={<TaskForm />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </div>
   );
 }

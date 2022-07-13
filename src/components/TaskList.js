@@ -36,35 +36,56 @@ const TaskList = () => {
   const List = () => {
     return tasks.map((task) => {
       return (
-        <div key={task.id}>
-          <h3>{task.completed ? <del>{task.title}</del> : task.title}</h3>
-          <p>
+        <div key={task.id} className="card">
+          <div className="card-title">
+            {task.completed ? <del>{task.title}</del> : task.title}
+          </div>
+          <p className="card-description">
             {task.completed ? <del>{task.description}</del> : task.description}
           </p>
-          <button onClick={() => handleDelete(task.id)}>Delete</button>{" "}
-          {!task.completed && (
-            <>
-              <button onClick={() => handleEdit(task.id)}>Edit</button>{" "}
-            </>
-          )}
-          <button onClick={() => handleCompleted(task.id)}>
-            Mark as {!task.completed ? "completed" : "not completed"}
-          </button>
-          <br />
+          <div className="card-actions">
+            <button
+              onClick={() => handleDelete(task.id)}
+              className="btn-delete"
+            >
+              Delete
+            </button>{" "}
+            {!task.completed && (
+              <>
+                <button
+                  onClick={() => handleEdit(task.id)}
+                  className="btn-edit"
+                >
+                  Edit
+                </button>{" "}
+              </>
+            )}
+            <button
+              onClick={() => handleCompleted(task.id)}
+              className="btn-completed"
+            >
+              {!task.completed ? "Completed" : "Not completed"}
+            </button>
+          </div>
         </div>
       );
     });
   };
 
   return (
-    <div>
-      <button onClick={handleNewTask}>Create a new task</button>
-      <br />
-      <button onClick={handleOnlyNotCompleted}>
-        {onlyNotCompleted ? "Show all tasks" : "Show only non completed tasks"}
-      </button>
-      <h2>Tasks: {tasks.length}</h2>
-      {List()}
+    <div className="w-4/5">
+      <div className="list-header">Tasks: {tasks.length}</div>
+      <div className="flex justify-center pb-4">
+        <button onClick={handleNewTask} className="btn-primary">
+          Create a new task
+        </button>
+        <button onClick={handleOnlyNotCompleted} className="btn-secondary">
+          {onlyNotCompleted
+            ? "Show all tasks"
+            : "Show only non completed tasks"}
+        </button>
+      </div>
+      <div className="grid grid-cols-3 gap-3">{List()}</div>
     </div>
   );
 };
